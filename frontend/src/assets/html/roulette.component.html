@@ -1,0 +1,134 @@
+
+
+
+<div id="progressBar">
+  <div id="bar"></div>
+  <span [hidden]="rolling" id="barText"><span style="cursor: pointer; margin-right:10px;" (click)="toggleMute()"><i class="{{mutedIcon()}}" aria-hidden="true"></i></span>       Rolling in</span>
+  <span [hidden]="rolling" id="time">{{rollIn}}.00s...</span>
+  <span [hidden]="!rolling" id="barTextRolling"><span style="cursor: pointer; margin-right:10px;" (click)="toggleMute()"><i class="{{mutedIcon()}}" aria-hidden="true"></i></span>       Rolling...</span>
+</div>
+<div class="previousRolls">
+  <p>Previous Rolls: </p>
+  <div id="rolls">
+    <ul>
+      <li *ngFor="let roll of previousRolls.slice().reverse()"
+      (click)="onSelect(roll, content)" [@historyIn]="roll.state" class='rouletteRollRound {{getColor(roll["winningNumber"])}}'>
+         <span>{{roll.winningNumber}}</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div id="wheelContainer">
+  <div id="wheelsHolder">
+    <div *ngFor="let nn of wheels" class='wheel {{nn}}'>
+      <div  *ngFor="let num of nums" class='{{getColor(num)}} chunk'>
+          <span>{{num}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="bets">
+  <div id="wager">
+      <label>Wager: </label>
+      <input [(ngModel)]= "currentBet" placeholder="1" type="number" name="Wager"><br>
+      <button (click)='clearBet()'>Clear</button>
+      <button (click)='incrementBet(1)'>+1</button>
+      <button (click)='incrementBet(10)'>+10</button>
+      <button (click)='incrementBet(100)'>+100</button>
+      <button (click)='incrementBet(1000)'>+1000</button>
+      <button (click)='multiplyBet(2)'>x2</button>
+      <button (click)='multiplyBet(.5)'>1/2</button>
+      <button (click)='maxBet()'>Max</button>
+  </div>
+  <div id="betsDisplay">
+
+    <div id="redBet" class="betColumn">
+      <div class="currentBet">
+        <span (click)="lockInBet(0, user)"><i class="fa fa-database" aria-hidden="true"></i>  {{formatNumber(getTotalBet(0))}}</span>
+      </div>
+      <div class="topBet">
+        <div class="iconBox">
+            <img *ngIf="hasTopBet(0)" src={{getTopBet(0).betPicture}}>
+        </div>
+        <div class="highestBid">
+          <span>HIGHEST RED</span><br>
+          <span>{{getTopBet(0).betName}}</span><br>
+          <span><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getTopBet(0).bet)}}</span>
+        </div>
+      </div>
+      <div class="totalBet">
+        <span><i class="fa fa-user-circle" aria-hidden="true"></i> {{redBets.length}}</span>
+        <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getSumBets(0))}}</span>
+      </div>
+      <div class="betList">
+        <div class="betBox" *ngFor="let bet of redBets | orderBy : ['-bet']" [@betIn]="bet.state">
+          <span class="iconSpan">
+            <img class="icon" src={{bet.betPicture}}>
+          </span>
+          <span>{{bet.betName}}</span>
+          <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(bet.bet)}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="greenBet" class="betColumn">
+      <div class="currentBet">
+        <span (click)="lockInBet(1, user)"><i class="fa fa-database" aria-hidden="true"></i>  {{formatNumber(getTotalBet(1))}}</span>
+      </div>
+      <div class="topBet">
+        <div class="iconBox">
+            <img *ngIf="hasTopBet(1)" src={{getTopBet(1).betPicture}}>
+        </div>
+        <div class="highestBid">
+          <span>HIGHEST GREEN</span><br>
+          <span>{{getTopBet(1).betName}}</span><br>
+          <span><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getTopBet(1).bet)}}</span>
+        </div>
+      </div>
+      <div class="totalBet">
+        <span><i class="fa fa-user-circle" aria-hidden="true"></i> {{greenBets.length}}</span>
+        <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getSumBets(1))}}</span>
+      </div>
+      <div class="betList">
+        <div class="betBox" *ngFor="let bet of greenBets | orderBy : ['-bet']" [@betIn]="bet.state">
+          <span class="iconSpan">
+            <img class="icon" src={{bet.betPicture}}>
+          </span>
+          <span>{{bet.betName}}</span>
+          <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(bet.bet)}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="blackBet" class="betColumn  noSpacer">
+      <div class="currentBet">
+        <span (click)="lockInBet(2, user)"><i class="fa fa-database" aria-hidden="true"></i>   {{formatNumber(getTotalBet(2))}}</span>
+      </div>
+      <div class="topBet">
+        <div class="iconBox">
+            <img *ngIf="hasTopBet(2)" src={{getTopBet(2).betPicture}}>
+        </div>
+        <div class="highestBid">
+          <span>HIGHEST BLACK</span><br>
+          <span>{{getTopBet(2).betName}}</span><br>
+          <span><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getTopBet(2).bet)}}</span>
+        </div>
+      </div>
+      <div class="totalBet">
+        <span><i class="fa fa-user-circle" aria-hidden="true"></i> {{blackBets.length}}</span>
+        <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(getSumBets(2))}}</span>
+      </div>
+      <div class="betList">
+        <div class="betBox" *ngFor="let bet of blackBets | orderBy : ['-bet']" [@betIn]="bet.state">
+          <span class="iconSpan">
+            <img class="icon" src={{bet.betPicture}}>
+          </span>
+          <span>{{bet.betName}}</span>
+          <span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(bet.bet)}}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

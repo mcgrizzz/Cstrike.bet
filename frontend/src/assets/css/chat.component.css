@@ -1,0 +1,73 @@
+
+#chatComp {
+  height: 100%;
+  width: 95%;
+  background-color: rgba(28, 28, 28, 0.1);
+}
+
+#chatBox {
+  width: 95%;
+  height: 87%;
+  margin-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+}
+
+.chatComp {
+  width: 98%;
+  height: auto;
+  min-height: 60px;
+  margin-left: 1px;
+  margin-right: 1px;
+  box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+  background-color: rgb(27, 34, 43);
+  color: white;
+  text-align: left;
+  word-break: normal;
+}
+
+.chatComp > * {
+  font-size: .8rem;
+}
+
+.chatComp > div > h2 {
+  margin-top: 0;
+  margin-bottom:0;
+  font-size: .9rem;
+}
+
+.chatComp > img {
+  float: left;
+  height: 40px;
+  margin: 5px;
+}
+
+.content {
+  position: relative;
+  width: 80%;
+  padding-top: 5px;
+  padding-left: 50px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+}
+
+#inputBox {
+  width: 93%;
+  height: 9%;
+  background-color: rgb(44, 56, 70);
+  outline-style: none;
+  box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+  border: 0;
+  color: white;
+  cursor:text;
+  margin: 0;
+  margin-left: 10px;
+  float: left;
+  resize:none;
+}
+
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}

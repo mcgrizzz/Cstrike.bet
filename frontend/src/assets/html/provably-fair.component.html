@@ -1,0 +1,94 @@
+<div id="header" style="height:6%; width: 60%;">
+  <h2 class="depositHeader">Provably Fair</h2>
+</div>
+<div style="display: flex; flex-direction: row; float: left; height: 90%;">
+  <div id="itemContainer" style="height: 100%; outline: none;">
+
+    <div style="padding-left: 15px; color: lightgrey; word-wrap: break-word;">
+      <p>
+        CStrike.bet employs a provably fair system to all its games. This system allows users to check the integrity of every game outcome. Before the launch of the site, 1000 seeds were generated, each being generated from the last. Each day a new seed is used to calculate game results.
+      </p>
+      <h3>Roulette</h3>
+      <p>
+        The first roulette game seed (and last one to be generated) is: <span ><b>nUQlGAl7324OKO9rEBlPgUJcjMIbg1J1cu8N1QQsCx6Xvc0NK/eah/EfPhk6a/YoO3o3KFdasXpQ2QW1tt2Z2g==</b></span>.
+      </p>
+      <p>
+        This is to prove that none of the succeeding seeds are manipulated in any way as each seed is a hash of the next game's seed.
+      </p>
+      <p>
+        To calculate each round's result the day's seed and round number are hashed together. Then a substring of the hash is converted into a numeric representation and a modular function gives the roll number.
+    The below code can be used to verify any rounds. <br><br><b><a href="http://rextester.com/LRED86696" target="_blank" style="text-decoration: none; color: lightgrey;">Click to run code</a></b>
+      </p>
+
+      <pre style="font-family: monospace; font-size: .9rem; background-color: rgba(0, 0, 0, .2); word-wrap: break-word; padding: 15px; margin-right: 15px; color: rgb(108, 149, 98)">
+
+        var crypto = require('crypto');
+
+        function numValue(str){{ '{' }}
+            var hash = 0;
+            if (str.length == 0) return hash;
+            for (i = 0; i < str.length; i++) {{ '{' }}
+                char = str.charCodeAt(i);
+                hash = ((hash<<5)-hash)+char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+        }
+
+        //Enter ROUND and SEED here.
+
+        var currentSeed = "SEED";
+        var currentRound = 16;
+
+
+        currentRound = currentRound - 1; //Rounds are displayed as +1 on website (indexing).
+                                         //Therefore, subtract to get proper round number.
+
+        var digest = crypto.createHash('sha512').update(currentSeed + '-' + currentRound)
+        .digest('base64').substring(7, 16);
+
+        var num = numValue(digest);
+
+        console.log("Roll Result: " + (Math.abs(num) % 15));
+
+      </pre>
+    </div>
+  </div>
+  <div id="depositMenu">
+    <div id="header" style="height:6%; width: 100%;">
+      <h2 class="depositHeader">Round Lookup</h2>
+    </div>
+    <div id="selectedItems" style="height: 77%; color:lightgrey;">
+      <div style="width: 75%; height: 45%; margin: auto; margin-top: 25%;">
+        <p style="padding: 5px; text-align: center; font-size: 1.1rem; line-height: .1rem;">
+          Enter Round Number
+        </p>
+        <br>
+        <div style="flex-direction: row; display: flex; width: 12.5rem; margin: auto;">
+          <input [(ngModel)]="roll" type="number" value="0" style="width: 6rem; height: 2.4rem;
+            padding: 0 1rem;
+            line-height: 2rem;
+            box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+            background-color: rgb(47, 58, 71);
+            transition: background-color .75s;
+            color: white;
+            border: 0; -webkit-appearance: none; ">
+          <br>
+          <button style="width: 5rem;" (click)="checkRoll()"> Lookup</button>
+        </div>
+
+        <div style="padding-top: 60px; font-size: 1.1rem;">
+          <label>Roll Number</label> <div style="font-size: .9rem; word-wrap: break-word; color: white;">{{rollNum}}</div>
+          <br>
+          <label>Result</label> <div style="font-size: 1rem; word-wrap: break-word; font-weight: bold;" [style.color]="getColor()">{{result}}</div>
+          <br>
+          <label>Date</label> <div style="font-size: .9rem; word-wrap: break-word; color: white;">{{date}}</div>
+          <br>
+          <label>Hash On Date</label> <div style="font-size: .9rem; word-wrap: break-word; color: white;">{{hash}}</div>
+        </div>
+      </div>
+    </div>
+    <div id="depositFooter" style="height: 5.5%;">
+    </div>
+  </div>
+</div>

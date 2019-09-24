@@ -1,0 +1,345 @@
+* {
+  --boxWidth: 4.375rem;
+
+}
+
+#progressBar {
+    margin: auto;
+    width: auto;
+    height: 30px;
+    box-shadow: 0 0 1.5pt 0 rgb(140, 140, 140);
+    background-color: rgba(75, 75, 75, 0);
+    line-height: 30px;
+    text-align: center;
+    font-size: 1.15rem;
+    border-radius: 0px;
+    position: relative;
+}
+
+#bar {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(63, 45, 70, 0.54);
+    border-radius: 0px;
+    position: absolute;
+
+}
+
+
+#barText {
+  position: relative;
+  box-sizing: border-box;
+  vertical-align: middle;
+  width: 120px;
+  line-height: 30px;
+  color: rgb(255, 255, 255);
+}
+
+#time {
+  position: relative;
+  box-sizing: border-box;
+  width: 60px;
+  vertical-align: middle;
+  color: rgb(255, 255, 255);
+}
+
+#barTextRolling {
+  color: rgb(255, 255, 255);
+}
+
+.previousRolls {
+  text-align: center;
+  display: block;
+  margin: 1rem auto 1.25rem auto;
+  line-height: 2.5rem;
+  box-sizing: content-box;
+  vertical-align: middle;
+  overflow: hidden;
+  max-width: 36.45rem;
+  white-space: nowrap;
+  color: white;
+}
+
+.previousRolls p {
+  float: left;
+  text-align: center;
+  display: inline-block;
+  font-size: 1.1rem;
+  padding-right: 5px;
+}
+
+.previousRolls ul {
+  text-align: center;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  float: left;
+}
+
+.rouletteRollRound {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: .4rem .3rem;
+  line-height: 2rem;
+  font-size: 1.05rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: height .1s, width .1s, margin .1s, line-height .1s;
+  color: white;
+}
+
+ul > .rouletteRollRound:hover {
+  margin: .2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+
+  box-shadow: 0 0 1.5pt 1pt white;
+}
+
+#wheelContainer {
+  margin: 1rem auto;
+  width: calc(15 * var(--boxWidth));
+  height: var(--boxWidth);
+  background-color: rgba(75, 75, 75, 0.78);
+  overflow: hidden;
+  flex-wrap: wrap;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 10pt 1pt rgb(21, 19, 24);
+}
+
+#wheelContainer:before {
+  content: "";
+  left: calc(50% - 1.5px);
+  display: block;
+  width: 3px;
+  height: 100%;
+  position: absolute;
+  background: #755f1e;
+  background: -webkit-linear-gradient(#755f1e, white, #755f1e); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#a78930, white, #a78930); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#a78930, white, #a78930); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#a78930, #a78930, white, #a78930, #a78930); /* Standard syntax */
+  z-index: 2;
+}
+
+#wheelsHolder {
+  width: calc(135 * var(--boxWidth));
+  height: var(--boxWidth);
+  transition-timing-function: cubic-bezier(0.165, 0.94, 0.44, 1);
+}
+
+#bets div{
+
+  max-width: 60rem;
+}
+
+#wager {
+  margin: 2rem auto 0rem auto;
+  width: 45rem !important;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+#wager > label {
+    padding-right: 1rem;
+}
+
+#wager > input {
+  height: 2.4rem;
+  background-color: rgb(44, 56, 70);
+  outline-style: none;
+  box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+  border: 0;
+  color: white;
+  padding-left: 1.1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  cursor:text;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+#betsDisplay {
+  width: 100%;
+  height: 15rem;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  position: relative;
+}
+
+.betColumn {
+  width: auto;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 10rem;
+  margin: auto;
+  margin-top: 0;
+  float: left;
+  position: relative;
+  height: auto;
+}
+
+.noSpacer {
+  padding-right: 0 !important;
+}
+
+.totalBet {
+  margin: 0;
+  color: white;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+}
+
+.betList {
+  height: auto;
+  position: relative;
+  color: grey;
+  font-size: .9rem;
+}
+
+.topBet {
+  margin: 1rem auto;
+  width: 18rem;
+  height: 5rem;
+  outline-color: rgb(92, 96, 110);
+  outline-style: solid;
+  outline-width: thin;
+  color: white;
+  background-color: rgb(34, 37, 48);
+  font-size: .75rem;
+}
+
+.currentBet {
+  text-align: center;
+  font-size: 2rem;
+
+}
+
+.currentBet > span {
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  transition: text-shadow .15s;
+}
+
+.currentBet > span:hover {
+  text-shadow: 0pt 0pt 7pt rgba(161, 161, 161, 0.5);
+
+}
+
+.iconBox {
+  float: left;
+  padding: .5rem auto;
+  padding-right: .2rem;
+  padding-left: .2rem;
+  margin: .5rem auto;
+  width: 4rem;
+  height: 4rem;
+}
+
+.iconBox > img {
+  border-radius: 50%;
+  width: 3.5rem;
+  height: auto;
+  position: relative;
+  top: 10%;
+  left: calc(50% - 1.75rem);
+}
+
+.betBox {
+  padding-bottom: .5rem;
+}
+
+
+.icon {
+  border-radius: 50%;
+  height: 19px;
+  width: 19px;
+  position: relative;
+  vertical-align: bottom;
+  margin-right: .25rem;
+}
+
+.iconSpan {
+  height: 16;
+  width: 16;
+}
+
+.highestBid {
+  padding: 1.3rem;
+}
+
+#redBet > .currentBet {
+  color: rgb(180, 40, 40);
+}
+
+#greenBet > .currentBet {
+  color: rgb(18, 149, 50);
+}
+
+#blackBet > .currentBet {
+  color: black;
+}
+
+.wheel {
+  width: calc(15 * var(--boxWidth));
+  display: inline-block;
+  flex-wrap: wrap;
+  float:left;
+}
+
+.chunk {
+  width: var(--boxWidth);
+  height: var(--boxWidth);
+  font-size: 1.25rem;
+  line-height: var(--boxWidth);
+  text-align: center;
+  color: white;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.blackRoll {
+  background-color: black;
+}
+
+.redRoll {
+  background-color: rgb(180, 40, 40);
+}
+
+.greenRoll {
+  background-color: rgb(18, 149, 50);
+}
+
+.win > * {
+  color: green;
+  outline-color: green;
+  transition: color 1s, outline-color 1s;
+}
+
+.lose > * {
+  color: red;
+  outline-color: red;
+  transition: color 1s, outline-color 1s;
+}

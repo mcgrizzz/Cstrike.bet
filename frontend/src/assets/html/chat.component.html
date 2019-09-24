@@ -1,0 +1,13 @@
+<div id="chatComp" (click)="$event.stopPropagation()" style="cursor: default;">
+  <div #scrollMe id="chatBox">
+    <div class="chatComp" *ngFor="let m of messages" [@chatIn]="m.state">
+      <img src={{m.pictureUrl}}>
+      <div class="content">
+        <h2><a [attr.href]="getUserLink(m)" target="_blank" style="text-decoration: none;" [style.color]="getUserColor(m)" [title]="getTitle(m)"> {{m.user}}</a> </h2>
+        {{m.message}}
+      </div>
+    </div>
+  </div>
+
+  <textarea id="inputBox" (keyup.enter)="sendMessage()" ref-textarea [(ngModel)]="message" placeholder="Send a message..."></textarea>
+</div>

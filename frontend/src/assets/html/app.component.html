@@ -1,0 +1,84 @@
+<template ngbModalContainer></template>
+<nav>
+   <!-- logoHere -->
+  <div id="gameNav">
+    <a [routerLink]=" ['./roulette'] "><img id="siteIcon" src="../assets/img/logo2-min.png"></a>
+    <a style="cursor: pointer;" (click)="openAffiliateModal()" class="affiliate"><span class="affiliate">Free Coins</span></a>
+    <ul>
+      <li><a class="activeLink" [routerLink]=" ['./roulette'] ">Roulette</a></li>
+      <li><a title="Coming soon..." style="color:gray;">Crash</a></li>
+      <li><a title="Coming soon..." style="color:gray;">Dice</a></li>
+      <li><a class="activeLink" [routerLink]=" ['./deposit'] ">Deposit</a></li>
+      <li><a class="activeLink" [routerLink]=" ['./withdraw'] ">Withdraw</a></li>
+
+      <li *ngIf="currentUser" class="divider"><div class="divider"></div></li>
+      <li *ngIf="currentUser" id="balance"><a [routerLink]=" ['./roulette'] "><i class="fa fa-database" aria-hidden="true"></i><counto [step]="30" [countTo]="currentUser.balance" [countFrom]="balanceOld" [duration]="numberTime" (countoChange)="intermediate = $event">  {{formatNumber(intermediate)}}</counto></a></li>
+      <li class="login"><a class="activeLink" *ngIf="!currentUser" href="https://cstrike.bet:2083/api/auth/steam">Login</a></li>
+
+      <li *ngIf="currentUser" style="margin-top: 0; margin-bottom:0;">
+      </li>
+      <li *ngIf="currentUser" class="userBox">
+        <div class="userBox">
+          <img class="icon" src={{currentUser.pictureUrl}} style="float:left; margin-right: 10px">
+          <span style="float:left;">
+            {{currentUser.name}}
+            <a (click)="logout()" style="cursor: pointer;">Logout</a>
+          </span>
+
+
+        </div>
+
+      </li> <!--Replace later with logout-->
+    </ul>
+
+  </div>
+  <!--FREE COINS -->
+</nav>
+
+<div id="content">
+  <div id="sidebar" (click)="toggleSidebar();">
+    <i id="arrow" class="fa fa-chevron-left" aria-hidden="true"></i>
+    <my-chat></my-chat>
+
+  </div>
+  <div id="wide">
+    <router-outlet>
+      <div id='starContainer'>
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
+      </div>
+    </router-outlet>
+    <footer style="position: fixed; right: 8vh; bottom: 10px; color: rgb(161, 171, 204);">
+      <a style="margin-right: 15px; text-decoration: none; color: inherit;" [routerLink]=" ['./provably-fair'] ">Provably Fair</a>
+      <a style="margin-right: 15px; cursor: pointer;" (click)="openInfoModal('lg', 'Frequently Asked Questions',['How do I get credits ?', 'Why does the withdrawal page show a different balance ?', 'What is the affiliate program ?', 'Any more questions ?'],
+['You can earn credits through the affiliates program, by depositing skins, or by winning them in games.
+', 'CStrike.bet has an 80% deposit/bet policy. Instead of disallowing withdrawal until this 80% bet threshold has been met, you can withdraw credits you have won plus the amount of credits equal to 1.25x the amount you have bet. You cannot withdraw until you have deposited atleast once and a minimum of 50 credits. When making your first deposit, you can only keep up to 2x the initital deposited amount in balance. This is to prevent the use of our bots as a trading platform. If you do not intend on abusing our bots, you will be able to withdraw your full balance promptly.
+', 'The affiliate program is a way for you to earn more credits by spreading the word about CStrike.bet. By giving people your promo code, you earn a commision of 2% for all of their bets. They earn 5 credits when they enter your promo code. You can redeem your balance at any time, at any amount.', 'Please direct any more questions to the support section.']);">FAQ</a>
+      <a style="margin-right: 15px; cursor: pointer;" (click)="openInfoModal('sm', 'Support', ['Contact Support', 'support@cstrike.bet'], ['Please contact support at the following address']);">Support</a>
+      <a style="margin-right: 15px; cursor: pointer;" (click)="openAffiliateModal()">Affiliates</a>
+      <a style="cursor: pointer;"(click)="openInfoModal('lg', 'Terms of Service', ['', '', '', '', 'Ownership', 'Acceptable Use', 'Chat Room Usage', '', '', 'Item Values', 'Credits', 'Withdrawal', '', '', '', '', 'Conduct', 'Refunds', 'Limitations of Liability'],['By using CStrike.bet, you acknowledge and accept these Terms of Service in full and without reservation, you are agreeing to our Terms of Service and you are responsible for compliance with any applicable laws. These Terms of Service govern your use of this website.
+', 'CStrike.bet reserves the right, at its sole discretion, to modify or replace any of these Terms of Service, or change, suspend, or discontinue the Service (including without limitation, the availability of any feature, database, or content) at any time by posting a notice on the Site or by sending you notice through the Service or via email.
+', 'CStrike.bet may also impose limits on certain features and services or restrict your access to parts or all of the Service without notice or liability. It is your responsibility to check these Terms of Service periodically for changes. Your continued use of the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.
+', 'You must be at least 18 years of age to play on CStrike.bet.', 'All materials on this website are intellectual property of CStrike.bet and you may not use any of the content seen here for commercial use without permission. Exclusive rights for Counter Strike: Global Offensive and its associated virtual items belong to Steam and the Valve Corporation.',
+'You must not use CStrike.bet in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of CStrike.bet or in any way which is unlawful, illegal, fraudulent or harmful.',
+'You must not post any phishing links, advertisements, pornography or other suspicious links in the chat. Nor should you post your own or other people’s personal information, if you wish to exchange personal information please use different platforms to do so. Spamming or any other type of disruptive and annoying chat behaviour is strictly prohibited. Excessive flaming, racism, sexism and similar offensive behaviour is also not permitted.',
+'Please keep the language to English only in the chat rooms.',
+'Failure to abide by any of these usage rules may result in a temporary or permanent mute in our chat rooms. CStrike.bet staff reserve the right to mute any user at their own discretion and these decisions may or may not be reverted on special request.',
+'You are participating in games that allow you to deposit and receive intangible items. We display a value in points (“Credits”) to add the effect that these items have no physical value. These values are subject to change without notice. Patterns on items are not taken into account. By using CStrike.bet you are accepting our item values and there will be no refund in case of a value issue.',
+'We give you the opportunity to exchange Skins for CStrike.bet virtual currency, “Credits”. Credits are not real money, do not have monetary value, and may never be redeemed for “real world” money, or other items of monetary value from outside of the Service without our written permission. While we may use terms like “buy”, “purchase” or “sell” in reference to Credits, we do so only for convenience and such terms in no way indicate that Credits have monetary value or are real money. You acknowledge that Credits are not real currency and are not redeemable for any sum of money from us at any time. We make no guarantee as to the nature, quality or value of the features of the Service or any third-party goods or services that will be accessible through the use of Credits.',
+'Counter-Strike: Global Offensive Skins may be deposited on CStrike.bet in exchange for Credits. Depositing Skins on CStrike.bet implies that you fully accept CStrike.bet Skin valuation prices and understand that you will not receive a refund in the case of a Skin price being lower than the market value.',
+'You can redeem Credits for Skins from the Withdraw Page by selecting the skins you wish to withdraw and hitting “Withdraw”. A Trade Offer from one or more of our CStrike.bet bots will be sent to your Steam account. Your selected Skins will be sent to the Steam trade URL linked to your CStrike.bet account. We do not guarantee the items received by you to be identical to those from the Withdraw Page.', 'If you accept any of the trades associated with your single withdrawal request, any expired or cancelled trades within the same group of trades will not be refunded.',
+'Open trade offers will be automatically cancelled by CStrike.bet if they are not accepted ten minutes after opening by a CStrike.bet bot. If a trade offer is canceled by a CStrike.bet bot, we will return Credits into your CStrike.bet account. We are not responsible for the name tags or stickers attached to your Skins. CStrike.bet is not responsible for the loss of your Skins as a result of any third-parties including Steam.',
+'Using CStrike.bet as a trading platform is prohibited. Users found doing this will be blocked. We define trading as using our service to deposit items with the intention of withdrawing other items for a profit without a proportionate amount of play.',
+'CStrike.bet reserves the right to remove any user from our website at our sole discretion without and for any reason. Anyone attempting to scam other users will be permanently banned from using CStrike.bet.',
+'CStrike.bet does not offer refunds. By playing on this website you agree that you are always playing at your own risk.',
+'Use of our services is at your own risk. CStrike.bet, it’s employees and affiliates will never be held liable for your profits or losses while using this website. Variation to these Terms of Service are able to be revised and edited by CStrike.bet at any time. Revised terms and conditions will apply from their effective date once published to this website.']);">Terms of Service</a>
+    </footer>
+  </div>
+
+</div>
+
+
+
+<!--ROUTER GOES IN HERE -->

@@ -1,0 +1,17 @@
+<div [@modalIn]="state">
+  <div class="modal-header">
+    <h4 class="modal-title">Roll Data: Round  <span style="color: darkgreen;"> #{{roll.round}}</span></h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body previousRolls" style="text-align: left;">
+    Rolled:<li class="rouletteRollRound {{getColor(roll.winningNumber)}}" style="cursor: default;">
+          <span>{{roll.winningNumber}}</span>
+        </li><br>
+        <span>Day of Roll: {{formatDate()}}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+<div>

@@ -1,0 +1,21 @@
+<div [@modalIn]="state">
+  <div class="modal-header">
+    <h4 class="modal-title">{{tradeType}} Offer</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body previousRolls" style="text-align: center;">
+    <span style="color: rgb(187, 68, 68);" *ngIf="tradeUrl" [@modalIn]>This trade expires in {{expireIn}} minutes.</span>
+    <div *ngIf="tradeErrorWithdraw" style="color: rgb(187, 68, 68);" [@modalIn]>An error has occurred. Your balance has been refunded. <br> If it has not, email <b>support@cstrike.bet</b></div>
+    <div *ngIf="tradeErrorDeposit" style="color: rgb(187, 68, 68);" [@modalIn]>An error has occurred. Please try again.</div>
+    <br>
+    Trade Hash: <span *ngIf="hash" style="color: rgb(156, 156, 156);" [@modalIn]>{{hash}}</span> <span *ngIf="!hash" style="color: rgb(156, 156, 156);">Being Generated...</span>
+    <br>
+    <a *ngFor="let url of tradeUrl, let i = index" href="{{url}}" target="_blank" style="text-decoration: none; color: rgb(132, 141, 167);"[@modalIn]>Direct Link to Trade #{{i}}<br></a>
+    <a *ngIf="!tradeUrl" style="cursor: default; text-decoration: none; color: rgb(132, 141, 167);">Trade Link Generating...</a>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+<div>

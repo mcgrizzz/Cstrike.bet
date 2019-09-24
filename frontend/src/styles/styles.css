@@ -1,0 +1,70 @@
+
+
+
+h1 {
+  color: #369;
+  font-size: 250%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  list-style-type: none;
+  background-color: rgba(30, 36, 43, 1);
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+ button {
+  height: 2.4rem;
+  padding: 0 1rem;
+  line-height: 2rem;
+  box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+  background-color: rgb(27, 34, 43);
+  transition: background-color .75s;
+  color: white;
+  border: 0;
+}
+
+ button:hover {
+  background-color: rgb(55, 70, 87);
+}
+
+ button:focus {
+  outline-style: none;
+  background-color: rgb(55, 70, 87);
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #343f50;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #425167;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #425167;
+}
+::-webkit-scrollbar-track {
+  background: rgba(26, 26, 26, 0.43);
+  border: 100px none #6e6e6e;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "steambot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "request": "^2.81.0",
+    "socket.io": "^1.7.3",
+    "steam-tradeoffer-manager": "^2.9.0",
+    "steam-tradeoffer-manager-2": "^1.22.1",
+    "steam-user": "^3.19.1",
+    "steamcommunity": "^3.32.2"
+  }
+}

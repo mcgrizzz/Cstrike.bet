@@ -1,0 +1,230 @@
+#gameNav {
+  background: rgba(22, 166, 198, 0.01);
+  height: 95px;
+  width: 100%;
+  overflow: hidden;
+  outline-color: rgb(30, 30, 31);
+  outline-style: solid;
+  outline-width: thin;
+  box-shadow: 0 0 25pt .1pt rgb(13, 13, 13);
+  z-index: 1;
+  position: relative;
+
+}
+
+#siteIcon {
+  position: relative;
+  height: 80px;
+  padding-left: 15px;
+}
+
+span.affiliate {
+  height: 20px;
+  width: 100px;
+  display: inline-block;
+
+}
+
+a.affiliate {
+  text-decoration: none;
+  color:white;
+  background-color: rgb(30, 136, 74);
+  padding: 10px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 10pt 1pt black;
+  top: -8px;
+  font-size: 20px;
+  position: relative;
+}
+
+a.affiliate:hover {
+  background-color: rgb(27, 131, 69);
+  box-shadow: 0 5pt 20pt 1pt black;
+  text-shadow: 0pt 0pt 2pt white;
+  top: -12px;
+}
+
+#gameNav img {
+  padding-top: 13px;
+
+}
+
+#gameNav ul {
+  margin: 0;
+  float: right;
+  border-radius: 1px;
+}
+
+#gameNav li {
+  display: inline;
+  position: relative;
+  float: left;
+  margin: 0 4px;
+  margin-top: calc(46px -  1rem);
+}
+
+div.divider{
+    position:absolute;
+    height: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+li.divider {
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+}
+
+#balance{
+  //outline: rgba(31, 143, 108, 0.61) solid thin;
+  //padding: 0 10px;
+  margin-left: 1.5rem;
+  margin-right: .6rem !important;
+  line-height: .5rem;
+  transition: background-color .25s;
+
+}
+
+#balance > a {
+  cursor: pointer !important;
+  color: rgb(34, 131, 27) !important;
+}
+
+#balance:hover {
+  background-color: rgba(68, 124, 74, 0.35);
+}
+
+#balance > a:hover {
+  color: rgb(209, 213, 217) !important;
+}
+
+.icon {
+  border-radius: 50%;
+  padding-top: 0 !important;
+  height: 45px;
+  position: relative;
+  vertical-align: top;
+  margin-right: .25rem;
+}
+
+
+
+#gameNav li a {
+  display: block;
+  padding: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: rgb(191, 203, 215);
+  transition: color 0.55s ease;
+  cursor: default;
+}
+
+a.activeLink {
+  cursor: pointer !important;
+}
+
+a.activeLink:hover {
+  color: rgb(255, 255, 255) !important;
+}
+
+li.userBox {
+  float: left;
+  padding-left: .05rem;
+  margin: 0 !important;
+  margin-top: calc(46px -  27.5px) !important;
+  text-align: left;
+}
+
+div.userBox {
+  width: auto;
+  height: 45px;
+  padding: 5px 15px 5px 15px !important;
+  outline: rgba(255, 255, 255, 0.2) thin solid;
+  background: repeating-linear-gradient(
+  -45deg,
+  rgba(0, 0, 0, 0.2),
+  rgba(0, 0, 0, 0.2) 10px,
+  rgba(0, 0, 0, 0.3) 10px,
+  rgba(0, 0, 0, 0.3) 20px
+  ), rgba(40, 99, 128, 0.31);
+  vertical-align: center;
+}
+
+div.userBox > span > a {
+  position: absolute;
+  padding: 0 !important;
+  padding-top: 5px !important;
+  font-size: .95rem;
+  width: auto;
+}
+
+div.userBox > span {
+  color: rgb(97, 130, 187);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+li.login {
+  margin-left: 0 !important;
+  margin-right: 20px !important;
+
+}
+
+.login > a {
+  color: rgb(52, 125, 8) !important;
+  padding: 35px;
+  background-color: rgba(100, 122, 162, 0.15);
+}
+
+
+
+#content {
+  height: 90%;
+  vertical-align: top;
+  width: 100%;
+  text-align: center;
+}
+
+#sidebar {
+  width: 20%;
+  height: 100%;
+  background-color: rgba(61, 92, 117, 0.13);
+  box-shadow: 0pt 5pt 10pt -2px black;
+  float:left;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#arrow {
+  color:white;
+  margin-top: 100%;
+  margin-right: .8%;
+  font-weight: 5;
+  float:right;
+}
+
+#wide {
+  max-width: 100%;
+  height: 90%;
+  padding: 16px;
+  padding-top: 2rem;
+  margin: auto;
+  display: table;
+  display: block;
+  text-align: left;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+#wide::after {
+  content: "";
+  background: url("../img/bg-min.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}

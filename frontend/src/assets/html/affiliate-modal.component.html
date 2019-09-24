@@ -1,0 +1,50 @@
+<div [@modalIn]="state">
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="font-size: 1rem; overflow-y: scroll; text-align: left; height: 50vh;">
+    <div style="width: 90%; margin: auto;">
+      <h2>Free Credits</h2>
+      <br>
+      <div style="width: 50%; margin: auto; font-size: 1.1rem; line-height: 1rem; text-align: center;">
+        <label> Redeem a promo code </label><br><br>
+        <div stlye="flex-direction: row; display:flex;">
+          <input style="height: 24px; width: 100px; padding: 0 1rem;
+          line-height: 25px;
+          box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+          background-color: rgb(47, 58, 71);
+          transition: background-color .75s;
+          color: white;
+          border: 0; -webkit-appearance: none; " [(ngModel)]="redeemPromo">
+          <button style="height: 25px; line-height: 25px;" (click)="redeemPromoCode()">Redeem</button>
+        </div>
+      </div>
+      <br><br>
+      <h2>Your Affiliates</h2>
+      <div style="width: 95%; margin: auto; text-align: center;">
+        <label> Your code: </label>
+        <input [(ngModel)]="promo" style="height: 24px; width: 100px; padding: 0 1rem;
+        line-height: 25px;
+        box-shadow: 0 0 0 .2pt rgb(158, 159, 194);
+        background-color: rgb(47, 58, 71);
+        transition: background-color .75s;
+        color: white;
+        border: 0; -webkit-appearance: none;">
+        <button style="height: 25px; line-height: 25px;" (click)="savePromoCode()">Save your code</button><br><br>
+        <p>You've referred <b>{{referred}}</b> users.</p><br>
+        <label>Current Balance</label>
+        <span><b>{{formatNumber(balance)}}</b></span><br><br>
+        <button style="height: 45px; line-height: 45px;" (click)="redeemBalance()">Withdraw Balance</button>
+        <h3 [style.color]="getMessageColor()">{{errorMessage}}</h3>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+<div>

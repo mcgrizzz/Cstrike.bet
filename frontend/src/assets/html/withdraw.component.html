@@ -1,0 +1,55 @@
+<div id="itemContainer">
+  <div *ngIf="loader" style="position: relative; text-align: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="gooey">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+          <feBlend in="SourceGraphic" in2="goo"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+    <div class="blob blob-0"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+  <div *ngIf="isEmpty()" style="text-align: center; color: lightgrey; font-weight: bold; margin: 100px;">
+    <p>We are currently restocking our withdraw items. We appreciate your patience.</p>
+    <p>In the meantime, if you have any items you'd like to have available for withdrawal, please contact us via the email provided in our support module.</p>
+  </div>
+  <div class="itemSpacer" *ngFor="let ite of items | orderBy : ['-price']" [@boxIn]="ite.state">
+    <div class="{{getClass(ite)}}" (click)="addToWithdraw(ite)">
+      <img class="itemIcon" src="{{ite.picture}}">
+      <span class="itemPrice"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(ite.price)}}</span>
+      <div class="itemName">{{ite.name}}</div>
+    </div>
+  </div>
+</div>
+<div id="depositMenu">
+  <div id="header">
+    <h2 class="depositHeader">Withdraw</h2>
+    <span *ngIf="withdrawEnabled()" class="totalCredit"><i class="fa fa-database" aria-hidden="true"></i> {{getTotalWithdraw(true)}} / {{formatNumber(getWithdrawable())}}</span>
+    <span *ngIf="isWithdrawBanned()" class="totalCredit" style="color: rgb(131, 33, 33);">You are currently withdraw banned.</span>
+    <span *ngIf="!withdrawEnabled()" class="totalCredit" style="color: rgb(131, 33, 33);">You must deposit a minimum of 50 credits.</span>
+  </div>
+  <div id="selectedItems">
+    <div class="itemSpacer" *ngFor="let ite of itemsWithdrawn | orderBy : ['-price']" [@boxIn]="ite.state">
+      <div class="{{getClass(ite)}}" (click)="removeFromWithdraw(ite)">
+        <img class="itemIcon" src="{{ite.picture}}">
+        <span class="itemPrice"><i class="fa fa-database" aria-hidden="true"></i> {{formatNumber(ite.price)}}</span>
+        <div class="itemName">{{ite.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div id="depositFooter">
+    <div id="tradeUrl">
+      <label><a style="text-decoration: none; color: lightgrey; cursor: pointer;" href="https://steamcommunity.com/id/user/tradeoffers/privacy#trade_offer_access_url" target="_blank"> Trade Url: </a></label>
+      <input *ngIf="user" [(ngModel)]="tradeUrl">
+      <button style="height: 25px; line-height: 25px;" (click)="saveTradeUrl()">Save</button>
+    </div>
+    <button style="height: 30%; line-height: 1.75rem;  font-size: 2rem; display: block; margin: auto; margin-top: 18px; color: rgb(31, 128, 76);" [disabled]="!canWithdraw()" (click)="withdrawItems()"> Withdraw </button>
+  </div>
+</div>

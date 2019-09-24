@@ -1,0 +1,62 @@
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+body {
+  margin: 0;
+}
+
+.ctnr {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.ctnr::after {
+  content: "";
+  background: url("../img/bg-min.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+
+
+.ldr, .loader {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
+
+.ldr {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.ldr-blk {
+  height: 35%;
+  width: 35%;
+  margin-bottom: 5px;
+  animation: pulse 0.75s ease-in infinite alternate;
+  background-color: #14566b;
+}
+
+.an_delay {
+  animation-delay: 0.75s;
+}
