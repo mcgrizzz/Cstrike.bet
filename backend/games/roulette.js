@@ -154,7 +154,7 @@ function initGame(){
 }
 
 function callRoll(rollTime){
-  //UPDATE VARIABLES WITH NEW SHIT
+  //UPDATE VARIABLES
   var result = getResult(currentRound);
   currentRound++;
   currentRoll = result;

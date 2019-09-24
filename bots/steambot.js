@@ -120,7 +120,7 @@ function loadBot(bot, index){
   manager.on('newOffer', function(offer) {
       console.log("New offer #" + offer.id + " from " + offer.partner.getSteam3RenderedID() + " To bot: " + index);
       //console.log(offer);
-      if (offer.partner.getSteamID64() === '76561198059367897' || botIds.indexOf(offer.partner.getSteamID64()) !== -1) {
+      if (offer.partner.getSteamID64() === '' || botIds.indexOf(offer.partner.getSteamID64()) !== -1) {
           offer.accept((err, status) => {
               if (err) {
                   console.log(err);
