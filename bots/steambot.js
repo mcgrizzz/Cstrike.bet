@@ -33,7 +33,7 @@ var fullyLoaded = false;
 
 var offers = {}; // tradeHash: amount
 var bots = [];
-var botIds = ['76561198059367897', ];
+var botIds = [];
 var botNames = ['Rain', 'Brick', 'Mouse', 'Blue', 'Dust', 'Ron', 'Tom', 'Sam'];
 
 var itemsInTrade = [];
