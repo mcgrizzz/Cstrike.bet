@@ -1,0 +1,2 @@
+# Cstrike.bet
+This is the source for a CSGO Roulette site I created a while back. It has code for the frontend design in Angular, the backend game and user logic in nodejs, and the steam trading bots which are also written in nodejs. 
